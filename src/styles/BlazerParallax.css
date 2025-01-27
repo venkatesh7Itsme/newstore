@@ -1,0 +1,266 @@
+
+/*.blazers-collection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #f7f7f7;
+  color: #333;
+  
+}
+
+.blazers-content {
+  max-width: 50%;
+  margin: 12% 0%;
+  text-align: left;
+  padding: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
+.blazers-content h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-family:' Cormorant Garamond', serif; ;
+}
+
+.blazers-content p {
+  font-size:16px;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+.blazers-content h1 {
+  color: #333;
+  font-size:16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.shop-now-btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #333;
+  background-color:none;
+  border: 1px solid white;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+.shop-now-btn:hover {
+  background-color:#444;
+}
+.blazers-image{
+  flex: 0 0 50%;
+  max-width: 50%;
+  text-align: center;
+  padding: 1rem;
+}
+.blazers-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Responsive Design *
+@media (max-width: 768px) {
+  .blazers-collection {
+    flex-direction: row;
+    text-align: center;
+    gap:0.5rem;
+    
+  }
+
+  .blazers-content {
+    flex-direction: column;
+    text-align: center;
+
+  }
+  .blazers-content p{
+    font-size: 14px;
+  }
+  .blazers-content h2{
+    font-size: 28px;
+  }
+
+  .blazers-image {
+   
+   flex:1;
+    margin-top: 1.5rem;
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+  .blazers-image img{
+    max-width: 100%;
+    height: auto;
+    
+  }
+  .shop-now-btn{
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Responsive Design *
+@media (max-width: 1024px) {
+  .blazers-collection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .blazers-content {
+    flex: 1 1 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .blazers-content h2 {
+    font-size: 28px;
+  }
+
+  .blazers-content p {
+    font-size: 14px;
+  }
+
+  .shop-now-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .blazers-image {
+    flex: 1 1 100%;
+    padding: 1rem 0;
+  }
+}*/
+
+
+.blazers-collection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh; 
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.blazers-content {
+  max-width: 50%;
+  padding: 2rem; 
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.blazers-content h2 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  text-transform: capitalize;
+  line-height: 1.15em;
+
+}
+
+.blazers-content h1 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.blazers-content p {
+  font-size: 22px;
+  line-height: 1.6; 
+  margin-bottom: 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.46);
+}
+
+.shop-now-btn {
+  padding: 15px 25px; 
+  color: white;
+  background-color: none;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  font-size: 10px;
+  text-transform: uppercase;
+  margin-top: 15px;
+}
+
+.shop-now-btn:hover {
+  background-color: #444;
+  color: #fff;
+ 
+}
+
+.blazers-image {
+  flex: 0 0 50%;
+  max-width: 100%;
+  background-image: url('../assets/img42.jpg');  
+  background-size: cover;
+  background-position: right;
+  height: 100%;  
+  padding: 1rem;
+  
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .blazers-collection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .blazers-content {
+    max-width: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .blazers-content h2 {
+    font-size: 28px;
+  }
+
+  .blazers-content p {
+    font-size: 14px;
+  }
+
+  .shop-now-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .blazers-image {
+    height: 300px; /* Adjust height for smaller screens */
+    background-size: cover;
+  }
+}
+
+/* Medium Screens */
+@media (max-width: 1024px) {
+  .blazers-collection {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  .blazers-content {
+    max-width: 100%;
+    padding: 2rem;
+  }
+
+  .shop-now-btn {
+    padding: 0.5rem 1.2rem;
+  }
+
+  .blazers-image {
+    height: 400px; /* Adjust height */
+  }
+}
+

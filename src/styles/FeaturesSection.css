@@ -1,0 +1,68 @@
+.features-section {
+    display: flex;
+    justify-content: space-between; 
+    padding: 2rem 0; 
+  }
+  
+  .feature {
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .feature-icon {
+    font-size: 2rem; 
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  
+
+/* Default Layout (Desktop) */
+.features-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0;
+  gap: 1rem;
+}
+
+.feature {
+  text-align: center;
+  font-style: italic;
+  flex: 1; /* Equal width for all features */
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+
+@media (max-width: 768px) {
+  .features-section {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+  }
+
+  .feature {
+      flex: 1 1 45%; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .features-section {
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+  }
+
+  .feature {
+      flex: 1 1 100%; 
+  }
+
+  .feature-icon {
+      font-size: 1.8rem;
+  }
+}
