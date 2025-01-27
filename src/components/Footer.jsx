@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Footer.css";
+import "@babel/core";
 
 const Footer = () => {
   return (
