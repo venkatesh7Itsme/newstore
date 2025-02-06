@@ -393,7 +393,109 @@
   margin-bottom: 0.5rem;
 }
 
+/* Sticky Header Styles */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+}
 
+.sticky-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sticky-product-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sticky-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.sticky-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sticky-details h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sticky-price {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.sticky-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Adjust the quantity selector for sticky header */
+.sticky-header .quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sticky-header .quantity-button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sticky-header .quantity-value {
+  padding: 0 1rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.sticky-header .select-options {
+  padding: 0.5rem 1.5rem;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sticky-header .select-options:hover {
+  background-color: #444;
+}
+
+/* Add some padding to the body to prevent content jump when sticky header appears */
+body {
+  padding-top: 0;
+  transition: padding-top 0.3s ease;
+}
+
+body.has-sticky-header {
+  padding-top: 80px;
+}
 
 .related-products-section {
   width: 100%;
