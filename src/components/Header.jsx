@@ -1,14 +1,18 @@
-
 import React, { useState } from "react";
 import { FaShoppingBag, FaSearch, FaBars, FaTimes } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import "../styles/Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
   };
 
   return (
@@ -16,12 +20,11 @@ const Header = () => {
       <header className="header">
         <div className="nav-container">
           <ul className="nav-list desktop-nav">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#shop">Shop</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/shop">Shop</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/contact">Contact Us</Link></li>
           </ul>
-          {/* Hamburger Icon for Mobile */}
           <FaBars className="hamburger-icon" onClick={toggleMenu} />
         </div>
 
@@ -33,8 +36,10 @@ const Header = () => {
 
         <div className="icon-container">
           <FaSearch className="icon" />
-          <FaShoppingBag className="icon" />
-          <span className="bag-count">0</span>
+          <div className="cart-icon-container" onClick={toggleCart}>
+            <FaShoppingBag className="icon" />
+            <span className="bag-count">0</span>
+          </div>
         </div>
       </header>
 
@@ -42,8 +47,7 @@ const Header = () => {
         <h2 className="sub-heading">CASUAL & EVERYDAY</h2>
         <h1>Effortlessly Blend Comfort & Style!</h1>
         <p>
-          Effortlessly blend comfort and style with our Casual & Everyday collection, featuring cozy sweaters,
-          versatile denim, laid-back tees, and relaxed-fit joggers for your everyday adventures.
+          Effortlessly blend comfort and style with our Casual & Everyday collection, featuring cozy sweaters, versatile denim, laid-back tees, and relaxed-fit joggers for your everyday adventures.
         </p>
         <button className="view-collection-btn">VIEW COLLECTION</button>
       </div>
@@ -53,13 +57,26 @@ const Header = () => {
         <div className="mobile-menu">
           <FaTimes className="close-icon" onClick={toggleMenu} />
           <ul className="mobile-nav-list">
-            <li><a href="#home" onClick={toggleMenu}>Home</a></li>
-            <li><a href="#shop" onClick={toggleMenu}>Shop</a></li>
-            <li><a href="#about" onClick={toggleMenu}>About Us</a></li>
+            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+            <li><Link to="/shop" onClick={toggleMenu}>Shop</Link></li>
+            <li><Link to="/about" onClick={toggleMenu}>About Us</Link></li>
             <li><a href="#contact" onClick={toggleMenu}>Contact Us</a></li>
           </ul>
         </div>
       )}
+
+      {/* Shopping Cart Sidebar */}
+      <div className={`cart-sidebar ${isCartOpen ? "open" : ""}`}>
+        <button className="close-btn" onClick={toggleCart}>✖</button>
+        <h2>Shopping Cart</h2>
+        <p>No products in the cart.</p>
+        <button className="continue-btn" onClick={toggleCart}>
+          Continue Shopping
+        </button>
+      </div>
+
+      {/* Overlay for Cart */}
+      {isCartOpen && <div className="cart-overlay" onClick={toggleCart}></div>}
     </div>
   );
 };

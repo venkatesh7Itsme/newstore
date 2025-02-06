@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/MostPopular.css";
 
 const MostPopular = () => {
+  const navigate = useNavigate();
+  
   const products = [
     {
       id: 1,
@@ -41,13 +44,22 @@ const MostPopular = () => {
     },
   ];
 
+  const handleImageClick = (productId) => {
+    navigate(`/product/${productId}`);
+  };
+
   return (
     <div className="most-popular">
       <h1>Most Popular</h1>
       <div className="product-list">
         {products.map((product) => (
           <div key={product.id} className="product-card">
-            <img src={product.image} alt={product.title} />
+            <img 
+              src={product.image} 
+              alt={product.title}
+              onClick={() => handleImageClick(product.id)}
+              className="cursor-pointer hover:opacity-80 transition-opacity"
+            />
             <h3>{product.title}</h3>
             <p>{product.category}</p>
             <p>{product.price}</p>
@@ -75,4 +87,3 @@ const MostPopular = () => {
 };
 
 export default MostPopular;
-
