@@ -35,12 +35,10 @@ function App() {
           </div>
         } />
         
-        {/* Shop Page Route */}
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactUs />} />
-                {/* NEW: Product Detail Route (Dynamic) */}
-                <Route path="/product/:id" element={<ProductPage />} />
+       <Route path="/product/:id" element={<ProductPage />} />
       
        
       </Routes>

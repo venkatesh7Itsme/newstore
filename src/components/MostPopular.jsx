@@ -13,7 +13,7 @@ const MostPopular = () => {
       price: "$124.90",
       sizes: ["XL", "L", "M", "S", "XS"],
       colors: ["black", "green", "red"],
-      image: "public/img37.jpg",
+      image: "/img37.jpg",
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ const MostPopular = () => {
       price: "$145.50",
       sizes: ["XL", "L", "M", "S", "XS"],
       colors: ["black", "green", "red"],
-      image: "public/img38.jpg",
+      image: "/img38.jpg",
     },
     {
       id: 3,
@@ -31,7 +31,7 @@ const MostPopular = () => {
       price: "$175.00",
       sizes: ["L", "M", "S", "XS"],
       colors: ["black", "green", "red"],
-      image: "public/img39.jpg",
+      image: "/img39.jpg",
     },
     {
       id: 4,
@@ -40,7 +40,7 @@ const MostPopular = () => {
       price: "$125.50",
       sizes: ["XL", "L", "M", "S", "XS"],
       colors: ["black", "green", "red"],
-      image: "public/img40.jpg",
+      image: "/img40.jpg",
     },
   ];
 

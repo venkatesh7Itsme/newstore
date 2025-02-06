@@ -1,10 +1,9 @@
-
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaCcVisa, FaCcMastercard, FaCcAmex, FaPaypal } from "react-icons/fa";
 import "../styles/ProductPage.css";
+import Footer from "../components/Footer";
 
-// Updated product array with "additionalInfo" and "reviews"
 const products = [
   {
     id: 1,
@@ -18,8 +17,8 @@ const products = [
       "https://websitedemos.net/clothing-store-02/wp-content/uploads/sites/1447/2024/03/img-08-a.jpg",
     sizes: ["XL", "L", "M", "S", "XS"],
     colors: ["black", "green", "red"],
-    additionalInfo:
-      "Material: 100% Cotton\nShipping: Free worldwide shipping\nCare: Machine wash cold.\nFit: Relaxed / Oversized",
+    additionalInfo:"sizes: XL,L,M,S,XS\n colors:black, green, red",
+   
     reviews: [],
   },
   {
@@ -34,7 +33,7 @@ const products = [
     sizes: ["XL", "L", "M", "S", "XS"],
     colors: ["black", "green", "red"],
     additionalInfo:
-      "Material: Rayon & Cotton\nShipping: Free shipping on orders over $99\nCare: Hand wash recommended",
+    " sizes: XL,L,M,S,XS\n colors:black, green, red",
     reviews: [],
   },
   {
@@ -48,8 +47,8 @@ const products = [
     image: "/img39.jpg",
     sizes: ["L", "M", "S", "XS"],
     colors: ["black", "green", "red"],
-    additionalInfo:
-      "Material: Silk Blend\nShipping: Express shipping available\nCare: Dry clean only",
+    additionalInfo:  
+    " sizes: XL,L,M,S,XS\n colors:black, green, red",
     reviews: [],
   },
   {
@@ -64,55 +63,116 @@ const products = [
     sizes: ["XL", "L", "M", "S", "XS"],
     colors: ["black", "green", "red"],
     additionalInfo:
-      "Material: 80% Polyester, 20% Viscose\nShipping: Free shipping\nCare: Machine wash cold, hang dry",
+      " sizes: XL,L,M,S,XS\n colors:black, green, red",
     reviews: [],
   },
 ];
 
+
+
+
 const ProductPage = () => {
   const { id } = useParams();
   const product = products.find((p) => p.id === parseInt(id));
-
-  // If product not found, display a message
-  if (!product) {
-    return (
-      <h2 style={{ textAlign: "center", margin: "2rem" }}>
-        Product not found.
-      </h2>
-    );
-  }
-
-  // States for quantity and selected options
+  
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-
-  // For tabbed content
+  const [selectedSize, setSelectedSize] = useState(product?.sizes[0]);
+  const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
   const [activeTab, setActiveTab] = useState("description");
+  
+  // New state for review form
+  const [reviewForm, setReviewForm] = useState({
+    rating: 0,
+    review: "",
+    name: "",
+    email: "",
+    saveInfo: false
+  });
+  const [hoveredStar, setHoveredStar] = useState(0);
+  const [formErrors, setFormErrors] = useState({});
+
+  if (!product) {
+    return <h2 style={{ textAlign: "center", margin: "2rem" }}>Product not found.</h2>;
+  }
 
   const increment = () => setQuantity((prev) => prev + 1);
   const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-  // Filter "related" by matching category (excluding the current product)
   const relatedProducts = products.filter(
     (p) => p.category === product.category && p.id !== product.id
   );
 
+  const handleReviewChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setReviewForm(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const validateForm = () => {
+    const errors = {};
+    if (!reviewForm.rating) errors.rating = "Please select a rating";
+    if (!reviewForm.review.trim()) errors.review = "Please write a review";
+    if (!reviewForm.name.trim()) errors.name = "Name is required";
+    if (!reviewForm.email.trim()) errors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(reviewForm.email)) errors.email = "Please enter a valid email";
+    return errors;
+  };
+
+  const handleSubmitReview = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    
+    if (Object.keys(errors).length === 0) {
+      
+      console.log("Review submitted:", reviewForm);
+   
+      setReviewForm({
+        rating: 0,
+        review: "",
+        name: "",
+        email: "",
+        saveInfo: false
+      });
+      setFormErrors({});
+    } else {
+      setFormErrors(errors);
+    }
+  };
+
+  const renderStars = (interactive = false) => {
+    return [...Array(5)].map((_, index) => {
+      const ratingValue = index + 1;
+      return (
+        <span
+          key={index}
+          className={`star ${ratingValue <= (interactive ? (hoveredStar || reviewForm.rating) : reviewForm.rating) ? 'filled' : ''}`}
+          onClick={() => interactive && setReviewForm(prev => ({ ...prev, rating: ratingValue }))}
+          onMouseEnter={() => interactive && setHoveredStar(ratingValue)}
+          onMouseLeave={() => interactive && setHoveredStar(0)}
+        >
+          ★
+        </span>
+      );
+    });
+  };
+
   return (
     <div className="product-page-container">
-      {/* ========== Top Section: Product Image & Details ========== */}
+     
       <div className="product-image">
         <img src={product.image} alt={product.title} />
       </div>
 
       <div className="product-details">
-        <p className="product-category">{product.category}</p>
+      <p className="product-category">{product.category}</p>
         <h1 className="product-title">{product.title}</h1>
         <p className="product-price">{product.price}</p>
         <p className="product-description">{product.description}</p>
 
         <div className="product-options">
-          {/* Size Options */}
+  
           <div className="product-sizes">
             <h4>Size</h4>
             <div className="size-list">
@@ -130,7 +190,7 @@ const ProductPage = () => {
             </div>
           </div>
 
-          {/* Color Options */}
+          
           <div className="product-colors">
             <h4>Color</h4>
             <div className="color-list">
@@ -148,7 +208,7 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Purchase Actions (Quantity + Add to Cart) */}
+      
         <div className="purchase-actions">
           <div className="quantity-selector">
             <button className="quantity-button" onClick={decrement}>
@@ -162,13 +222,13 @@ const ProductPage = () => {
           <button className="add-to-cart-btn">Add to Cart</button>
         </div>
 
-        {/* SKU & Category Meta */}
+      
         <div className="product-meta">
           <p className="sku">SKU: {product.sku}</p>
           <p className="product-category-tag">Category: {product.category}</p>
         </div>
 
-        {/* Guaranteed Safe Checkout */}
+       
         <div className="guaranteed-checkout">
           <h3>Guaranteed Safe Checkout</h3>
           <div className="payment-icons">
@@ -180,7 +240,9 @@ const ProductPage = () => {
         </div>
       </div>
 
-      {/* ========== Tabbed Content Section ========== */}
+
+      
+
       <div className="product-tabs">
         <ul className="tab-list">
           <li
@@ -211,7 +273,6 @@ const ProductPage = () => {
           )}
           {activeTab === "additionalInfo" && (
             <div className="additional-info-content">
-              {/* Using <pre> to preserve newlines in the text */}
               <pre>{product.additionalInfo}</pre>
             </div>
           )}
@@ -222,18 +283,87 @@ const ProductPage = () => {
               ) : (
                 product.reviews.map((review, index) => (
                   <div key={index} className="review-item">
+                    <div className="review-rating">{renderStars(false)}</div>
                     <p>
                       <strong>{review.author}:</strong> {review.text}
                     </p>
                   </div>
                 ))
               )}
+
+              <div className="review-form-container">
+                <h3>Be the first to review "{product.title}"</h3>
+                <p className="review-notice">Your email address will not be published. Required fields are marked *</p>
+
+                <form onSubmit={handleSubmitReview} className="review-form">
+                  <div className="form-group">
+                    <label>Your rating *</label>
+                    <div className="star-rating">
+                      {renderStars(true)}
+                    </div>
+                    {formErrors.rating && <span className="error">{formErrors.rating}</span>}
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="review">Your review *</label>
+                    <textarea
+                      id="review"
+                      name="review"
+                      value={reviewForm.review}
+                      onChange={handleReviewChange}
+                      rows="5"
+                    />
+                    {formErrors.review && <span className="error">{formErrors.review}</span>}
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="name">Name *</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={reviewForm.name}
+                      onChange={handleReviewChange}
+                    />
+                    {formErrors.name && <span className="error">{formErrors.name}</span>}
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">Email *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={reviewForm.email}
+                      onChange={handleReviewChange}
+                    />
+                    {formErrors.email && <span className="error">{formErrors.email}</span>}
+                  </div>
+
+                  <div className="form-group checkbox">
+                    <input
+                      type="checkbox"
+                      id="saveInfo"
+                      name="saveInfo"
+                      checked={reviewForm.saveInfo}
+                      onChange={handleReviewChange}
+                    />
+                    <label htmlFor="saveInfo">
+                      Save my name, email, and website in this browser for the next time I comment.
+                    </label>
+                  </div>
+
+                  <button type="submit" className="submit-review-btn">
+                    Submit
+                  </button>
+                </form>
+              </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* ========== Related Products Section ========== */}
+  
       {relatedProducts.length > 0 && (
         <div className="related-products-section">
           <h2>Related Products</h2>
@@ -249,6 +379,7 @@ const ProductPage = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

@@ -8,28 +8,28 @@ const NewestProducts = () => {
       category: "Activewear",
       title: "Professional Pinstripe Blazer",
       price: "$109.99",
-      image: "public/img46.jpg",
+      image: "/img46.jpg",
     },
     {
       id: 2,
       category: "Work & Joggers",
       title: "Relaxed Fit Joggers",
       price: "$250.00",
-      image: "public/img47.jpg",
+      image: "/img47.jpg",
     },
     {
       id: 3,
       category: "Evening Dresses",
       title: "Urban Chic Ensemble",
       price: "$224.95",
-      image:"public/img48.jpg",
+      image:"/img48.jpg",
     },
     {
       id: 4,
       category: "Activewear",
       title: "Weekend Wanderlust Wardrobe",
       price: "$119.95",
-      image: "public/img49.jpg",
+      image: "/img49.jpg",
     },
   ];
 
