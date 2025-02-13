@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FaCcVisa, FaCcMastercard, FaCcAmex, FaPaypal } from "react-icons/fa";
+import { FaCcVisa, FaCcMastercard, FaCcAmex, FaCcDiscover  } from "react-icons/fa";
 import "../styles/ProductPage.css";
 import Footer from "../components/Footer";
 
@@ -26,8 +26,7 @@ const products = [
     category: "Casual",
     title: "Bohemian Rhapsody Attire",
     price: "$145.50",
-    description:
-      "A free-spirited piece that blends whimsical patterns with comfortable fabrics. Perfect for a summer outing or festival look.",
+    description:"From the office to high-powered meetings, our Bohemian Rhapsody Attire is more than clothing; it’s a statement of strength, ambition, and unwavering elegance, ensuring you stride into any professional setting with unparalleled grace and authority",
     sku: "BR-202",
     image: "/img38.jpg",
     sizes: ["XL", "L", "M", "S", "XS"],
@@ -41,13 +40,12 @@ const products = [
     title: "Midnight Gala Maxi Dress",
     price: "$175.00",
     description:
-      "Turn heads at any formal event with this elegant maxi dress. The flowing silhouette and intricate detailing exude sophistication.",
+    "The deep midnight hue, combined with subtle detailing and a touch of glamour, creates a look that is both timeless and captivating. Whether you’re attending a gala, a wedding, or a special event, the Midnight Gala Maxi Dress ensures you’ll be the epitome of sophistication, leaving a trail of enchantment wherever you go.",
     sku: "MG-303",
     image: "/img39.jpg",
     sizes: ["L", "M", "S", "XS"],
     colors: ["black", "green", "red"],
     additionalInfo: " sizes: XL,L,M,S,XS\n colors:black, green, red",
-
     reviews: [],
   },
   {
@@ -56,7 +54,7 @@ const products = [
     title: "Power Suit Ensemble",
     price: "$125.50",
     description:
-      "A sleek, modern suit that embodies confidence and class. Ideal for business meetings or a night out in style.",
+    "Whether you’re leading a meeting or making a statement at a professional event, our Power Suit Ensemble effortlessly blends professionalism with contemporary flair, ensuring you exude confidence and leave a lasting impression wherever your ambitions take you.",
     sku: "PSE-404",
     image: "/img40.jpg",
     sizes: ["XL", "L", "M", "S", "XS"],
@@ -258,7 +256,7 @@ const ProductPage = () => {
             <FaCcVisa className="payment-icon" />
             <FaCcMastercard className="payment-icon" />
             <FaCcAmex className="payment-icon" />
-            <FaPaypal className="payment-icon" />
+            <FaCcDiscover  className="payment-icon" />
           </div>
         </div>
       </div>
@@ -292,10 +290,19 @@ const ProductPage = () => {
             </div>
           )}
           {activeTab === "additionalInfo" && (
-            <div className="additional-info-content">
-              <pre>{product.additionalInfo}</pre>
-            </div>
-          )}
+  <div className="additional-info-content">
+    <div className="info-row">
+      <div className="info-cell">Size</div>
+      <div className="info-cell">{product?.size?.join(", ") ||  "XL, L, M, S, XS"}</div>
+    </div>
+    <div className="info-row">
+      <div className="info-cell">Color</div>
+      <div className="info-cell">{product?.color?.join(", ") || "Green, Red, Black, White"}</div>
+    </div>
+  </div>
+)}
+
+          
           {activeTab === "reviews" && (
             <div className="reviews-content">
               {product.reviews.length === 0 ? (

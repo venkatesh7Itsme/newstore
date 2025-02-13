@@ -16,11 +16,11 @@
 
 .overlay-images {
   position: absolute;
-  top: 0; /* Ensure this is above the parallax content */
+  top: 0; 
   left: 0;
   width: 100%;
   display: flex;
-  z-index: 3; /* Bring the images above other content */
+  z-index: 3; 
 }
 
 .image-left {
@@ -55,7 +55,7 @@
   padding-left: 0px;
   padding-right: 144px;
   height: auto;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+  /*box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);*/
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
